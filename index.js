@@ -2,6 +2,7 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 
 const authRoutes = require("./routes/auth");
+const bookRoutes = require("./routes/books");
 
 require("dotenv").config();
 
@@ -9,7 +10,10 @@ const app = express();
 
 const port = 11000;
 
-app.use("/api/v1/ijan/authenticate", authRoutes);
+app.use(express.json());
+
+app.use("/api/v1/ijan/auth", authRoutes);
+app.use("/api/v1/ijan/books", bookRoutes);
 
 app.get("/api/v1/ijan", (req, res) => {
   return res.send("Hello!....Welcome to Backend Engineering at IJAN!");
